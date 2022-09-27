@@ -6,7 +6,7 @@ import cors from 'cors';
 import * as middlewares from './middlewares';
 import api from './api';
 import MessageResponse from './interfaces/MessageResponse';
-import { createRandomProduct, productList } from './seeder/products'; 
+import { productList } from './seeder/products'; 
 
 require('dotenv').config();
 
@@ -23,7 +23,7 @@ app.get<{}, MessageResponse>('/', (req, res) => {
   });
 });
 
-app.get('/products', async(req: Request,  res: Response) => {
+app.get('/products', async (req: Request,  res: Response) => {
   const message = productList;
   res.json(message);
 });

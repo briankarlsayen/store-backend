@@ -9,3 +9,13 @@ exports.createProduct = async (req, res, next) => {
     next(error)
   }
 }
+
+exports.getProducts = async (req, res, next) => {
+  try {
+    const products = await Product.findAll();
+    res.status(200).json(products)
+  } catch(error) {
+    next(error)
+  }
+}
+

@@ -16,7 +16,7 @@
   "production": {
     "username": "DATABASE_USER",
     "password": "DATABASE_PASSWORD",
-    "database": "DATABASE_NAME",
+    "database": "hhtuliza",
     "use_env_variable": "DATABASE_URL",
     "dialect": "postgres"
   }

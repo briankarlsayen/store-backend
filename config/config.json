@@ -14,10 +14,10 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "postgres",
-    "password": null,
-    "database": "store_db",
-    "host": "127.0.0.1",
+    "username": "DATABASE_USER",
+    "password": "DATABASE_PASSWORD",
+    "database": "DATABASE_NAME",
+    "use_env_variable": "DATABASE_URL",
     "dialect": "postgres"
   }
 }

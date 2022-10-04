@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "yarn && yarn exec sequelize db:migrate",
-    "reset-migrate": "yarn && yarn exec sequelize db:migrate:undo:all && yarn exec sequelize db:migrate",
+    "reset-migrate": "yarn && yarn exec sequelize db:migrate:undo --to store-db && yarn exec sequelize db:migrate",
     "undo-migrate": "yarn && yarn exec sequelize db:migrate:undo:all",
     "dev": "nodemon server.js"
   },

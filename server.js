@@ -3,7 +3,7 @@ const app = express();
 const cors = require("cors")
 require('dotenv').config()
 const product = require('./routers/product.route')
-
+const errorHandler = require("./middlewares/errorHandler");
 
 const PORT = process.env.PORT || 5633
 const { sequelize } = require('./models')
@@ -17,6 +17,8 @@ app.get('/', (req, res) => {
 })
 
 app.use('/products', product)
+
+app.use(errorHandler);
 
 app.listen(PORT, async() => {
   console.log(`Listening to port ${PORT}`)

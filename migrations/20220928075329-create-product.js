@@ -40,6 +40,10 @@ module.exports = {
         type: DataTypes.INTEGER,
         allowNull: false
       },
+      isDeleted: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+      },
       createdAt: {
         allowNull: false,
         type: DataTypes.DATE

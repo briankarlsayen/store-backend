@@ -30,7 +30,7 @@ module.exports = {
       },
       image: {
         type: DataTypes.STRING,
-        allowNull: false
+        defaultValue: "",
       },
       rate: {
         type: DataTypes.FLOAT,

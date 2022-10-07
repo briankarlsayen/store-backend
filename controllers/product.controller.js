@@ -1,6 +1,38 @@
 const { Product } = require('../models')
 const { checkingValidation } = require('../utilities/formChecker')
 
+const reconstructData = (data) => {
+  const arr = Array.isArray(data) ? data.map(item => {
+    return {
+      ...item.dataValues,
+      rate: undefined,
+      count: undefined,
+      uuid: undefined,
+      isDeleted: undefined,
+      createdAt: undefined,
+      updatedAt: undefined,
+      rating: {
+        rate: item.dataValues.rate,
+        count: item.dataValues.count,
+      }
+    }
+  }): null;
+
+  return Array.isArray(data) ? arr : {
+    ...data.dataValues,
+    rate: undefined,
+    count: undefined,
+    uuid: undefined,
+    isDeleted: undefined,
+    createdAt: undefined,
+    updatedAt: undefined,
+    rating: {
+      rate: data.dataValues.rate,
+      count: data.dataValues.count,
+    }
+  }
+}
+
 exports.createProduct = async (req, res, next) => {
   const { title, price, description, category, image, rate, count } = req.body;
   try {
@@ -22,7 +54,8 @@ exports.createProduct = async (req, res, next) => {
 exports.getProducts = async (req, res, next) => {
   try {
     const products = await Product.findAll({ where: { isDeleted: false }});
-    res.status(200).json({ success: true, data: products })
+    // res.status(200).json({ success: true, data: reconstructData(products) })
+    res.status(200).json(reconstructData(products))
   } catch(error) {
     next(error)
   }
@@ -33,7 +66,8 @@ exports.getSpecificProduct = async (req, res, next) => {
   try {
     const product = await Product.findOne({ where: { id, isDeleted: false } });
     if(!product) return res.status(422).json({ success: false, message: "Unable to get product "})
-    res.status(200).json({ success: true, data: product })
+    // res.status(200).json({ success: true, data: reconstructData(product) })
+    res.status(200).json(reconstructData(product))
   } catch(error) {
     next(error)
   }
